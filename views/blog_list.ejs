@@ -1,0 +1,79 @@
+<%- include('header') %>
+
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="img/blog_list.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb-text">
+                        <h2>Our Blog</h2>
+                        <div class="bt-option">
+                            <a href="./index.html">Home</a>
+                            <a href="#">Pages</a>
+                            <span>Blog</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Blog Section Begin -->
+    <section class="blog-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 p-0">
+                    <% members.forEach(function(member){ %>
+                        <% member.articles.forEach(function(article){ %>
+                            <div class="blog-item">
+                                <div class="bi-pic">
+                                    <img src="img/blog/blog-1.jpg" alt="">
+                                </div>
+                                <div class="bi-text">
+                                    <h5><a href="/blog/<%=article.author%>/<%=article.title%>"><%= article.title %></a></h5>
+                                    <ul>
+                                        <li>by <%= article.author %></li>
+                                        <li><%= article.date %></li>
+                                        <li><%= article.topic %></li>
+                                    </ul>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt ut
+                                        labore et dolore magna aliqua accumsan lacus facilisis.</p>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% }) %>
+                </div>
+                <div class="col-lg-4 col-md-8 p-0">
+                    <div class="sidebar-option">
+                        <div class="so-categories">
+                            <h5 class="title">Categories</h5>
+                            <ul>
+                                <li><a href="/blog/Embedded Systems">Embedded Systems <span>12</span></a></li>
+                                <li><a href="/blog/Machine Learning">Machine Learning <span>32</span></a></li>
+                                <li><a href="/blog/Image Processing">DIP <span>86/</span></a></li>
+                                <li><a href="/blog/Blockchain">Blockchain <span>25</span></a></li>
+                                <li><a href="/blog/ROS">ROS <span>36</span></a></li>
+                                <li><a href="/blog/Internet Of Things">Internet Of Things <span>15</span></a></li>
+                            </ul>
+                        </div>
+                        <div class="so-tags">
+                            <h5 class="title">Popular tags</h5>
+                            <a href="/blog/Embedded Systems">Embedded Systems</a>
+                            <a href="/blog/Mechanical Design">Mechanical Design</a>
+                            <a href="/blog/Machine Learning">Machine Learning</a>
+                            <a href="/blog/Internet Of Things">Internet Of Things</a>
+                            <a href="/blog/Image Processing">Image Processing</a>
+                            <a href="/blog/Blockchain">Blockchain</a>
+                            <a href="/blog/ROS">ROS</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Blog Section End -->
+
+   
+<%- include('footer') %>      

@@ -1,0 +1,47 @@
+<%- include('header') %>
+
+
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="img/profile.jpg">
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Contact Section Begin -->
+    <section class="contact-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-title contact-title">
+                        <span>Complete Your</span>
+                        <h2>Profile <%=member.name%></h2>
+                    </div>
+                    
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="leave-comment">
+                        <form action="/profile" method="post">
+                            <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                            <input type="text" placeholder="Batch Eg. k17, k18" name="batch">
+                            <input type="text" placeholder="Subteam Eg. Mechanical Subteam" name="subteam">
+                            <input type="text" placeholder="Skillset Eg.Embedded, ML" name="skill">
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                            <input type="text" placeholder="Facebook URL" name="facebook">
+                            <input type="text" placeholder="Github URL" name="github">
+                            <input type="text" placeholder="Instagram URL" name="instagram">
+                            </div>
+                            <input type="hidden" name="name" value=<%= member.name %>>
+                            <button type="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section End -->
+
+<%- include('footer') %>

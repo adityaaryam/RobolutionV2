@@ -1,0 +1,120 @@
+<%- include('header') %>
+
+    <!-- Blog Details Hero Section Begin -->
+    <section class="blog-details-hero set-bg" data-setbg="img/dashboard1.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 p-0 m-auto">
+                    <div class="bh-text">
+                        <h3>Hi <strong style="color: orangered;"><%= member.name %></strong></h3>
+                        <ul>
+                            <li>Welcome To Your Dashboard.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Blog Details Hero Section End -->
+
+    <!-- Blog Details Section Begin -->
+    <section class="blog-details-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 p-0 m-auto">
+                    <div class="blog-details-text">
+                            
+                        <div class="blog-details-author">
+                            <div class="ba-pic">
+                                <img src="img/dashboard/<%= member.id %>.jpg" alt="">
+                            </div>
+                            <div class="ba-text">
+                                <h5><%=member.profile.name%></h5>
+                                <ul>
+                                    <li><strong style="color: orangered;">Batch : </strong><strong style="color: white;"><%= member.profile.batch %></strong></li>
+                                    <li><strong style="color: orangered;">Subteam : </strong><strong style="color: white;"><%= member.profile.subteam %></strong></li>
+                                    <li><strong style="color: orangered;">Skill : </strong><strong style="color: white;"><%= member.profile.skill %></strong></li>
+                                </ul>
+                                <div class="bp-social">
+                                    <a href="<%= member.profile.facebook %>"><i class="fa fa-facebook"></i></a>
+                                    <a href="<%= member.profile.github %>"><i class="fa fa-github"></i></a>
+                                    <a href="<%= member.profile.instagram %>"><i class="fa fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 text-center">
+                            <div class="bs-text">
+                                <a href="/compose" class="primary-btn  btn-normal">Compose Blog</a>
+                                <br><br><br><br><br>
+                            </div>
+                            <h3> <strong style="color: white;">Your</strong> <strong style="color: orangered;">Blogs</strong></h3>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+
+            
+            <section class="blog-section spad">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 p-0">
+                            <% if(member.articles.length === 0){ %>
+                                <h3 style="color: whitesmoke ;">Your have no blogs yet.</h3>
+                            <% } %>
+                            <% for(var i=0;i<member.articles.length;i++){ %>
+                            <div class="blog-item">
+                                <div class="bi-pic">
+                                    <img src="img/blog/blog-1.jpg" alt="">
+                                </div>
+                                <div class="bi-text">
+                                    <h5><a href="/blog"><%= member.articles[i].title %></a></h5>
+                                    <ul>
+                                        <li>by <%= member.articles[i].author %></li>
+                                        <li><%= member.articles[i].date %>.</li>
+                                        <li><%= member.articles[i].topic %></li>
+                                    </ul>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt ut
+                                        labore et dolore magna aliqua accumsan lacus facilisis.</p>
+                                </div>
+                            </div>
+                            <% } %>
+                        </div>
+                        
+                        <div class="col-lg-4 col-md-8 p-0">
+                            <div class="sidebar-option">
+                                <div class="so-categories">
+                                    <h5 class="title">Categories</h5>
+                                    <ul>
+                                        <li><a href="/blog/Embedded Systems">Embedded Systems</a></li>
+                                        <li><a href="/blog/Mechanical Design">Mechanical Design</a></li>
+                                        <li><a href="/blog/Machine Learning">Machine Learning</a></li>
+                                        <li><a href="/blog/Internet Of Things">Internet Of Things</a></li>
+                                        <li><a href="/blog/Image Processing">Image Processing</a></li>
+                                        <li><a href="/blog/Blockchain">Blockchain</a></li>
+                                        <li><a href="/blog/ROS">ROS</a></li>
+                                    </ul>
+                                </div>
+                                <div class="so-tags">
+                                    <h5 class="title">Popular tags</h5>
+                                    <a href="/blog/Embedded Systems">Embedded Systems</a>
+                                    <a href="/blog/Mechanical Design">Mechanical Design</a>
+                                    <a href="/blog/Machine Learning">Machine Learning</a>
+                                    <a href="/blog/Internet Of Things">Internet Of Things</a>
+                                    <a href="/blog/Image Processing">Image Processing</a>
+                                    <a href="/blog/Blockchain">Blockchain</a>
+                                    <a href="/blog/ROS">ROS</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+    <!-- Blog Details Section End -->
+
+   
+
+<%- include('footer') %>

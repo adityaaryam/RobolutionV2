@@ -1,0 +1,42 @@
+<%- include('header') %>
+
+    <!-- Blog Details Hero Section Begin -->
+    <section class="blog-details-hero set-bg" data-setbg="img/registration.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 p-0 m-auto">
+                    <div class="bh-text">
+                        <h3>Only For The <strong style="color:orangered"> Club Members </strong></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section Begin -->
+    <section class="contact-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-title contact-title">
+                        <span>Get Yourself</span>
+                        <h2>Registered</h2>
+                    </div>
+                    
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="leave-comment">
+                        <form action="/register" method="post">
+                            <input type="email" placeholder="Username" name="username">
+                            <input type="text" placeholder="Name" name="name">
+                            <input type="password" placeholder="Password" name="pass">
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section End -->
+
+    <%- include('footer') %>
