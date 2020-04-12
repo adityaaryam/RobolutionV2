@@ -69,7 +69,7 @@
                                     <img src="img/blog/blog-1.jpg" alt="">
                                 </div>
                                 <div class="bi-text">
-                                    <h5><a href="/blog"><%= member.articles[i].title %></a></h5>
+                                    <h5><a href="/blog/:<%=member.articles[i].author%>/:<%=member.articles[i].title%>"><%= member.articles[i].title %></a></h5>
                                     <ul>
                                         <li>by <%= member.articles[i].author %></li>
                                         <li><%= member.articles[i].date %>.</li>

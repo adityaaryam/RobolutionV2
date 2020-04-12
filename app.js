@@ -3,10 +3,49 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require('lodash');
 const app = express();
+const encrypt = require("mongoose-encryption");
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const salt =10;
+
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use("/public", express.static(__dirname + '/public'));
-members= [];
+mongoose.set('useCreateIndex', true);
+mongoose.connect("mongodb://localhost:27017/robolutionDB", {useNewUrlParser: true, useUnifiedTopology: true});
+
+length=1;
+const profileSchema = new mongoose.Schema({
+  batch : String,
+  subteam : String,
+  skill : String,
+  facebook : String,
+  github : String,
+  instagram : String
+});
+
+const articlesSchema = new mongoose.Schema({
+  title : String,
+  author : String,
+  date : String,
+  topic : String,
+  article : String
+});
+
+const membersSchema = new mongoose.Schema({
+  id: Number,
+  username: String,
+  name : String,
+  password: String,
+  profile: profileSchema,
+  articles : [articlesSchema]
+});
+
+
+const profile = mongoose.model("profile",profileSchema);
+const articles = mongoose.model("articles",articlesSchema);
+const members = mongoose.model("members",membersSchema);
+
 
 app.get("/",function(req,res){
   res.redirect("/home");
@@ -16,71 +55,81 @@ app.get("/home",function(req,res){
     res.render("home");
 })
 
-//Blog List page
+//Blog List page ++++
 app.get("/blog_list",function(req,res){
   res.render("blog_list",{members:members});
 })
 
-//Register
+//Register +++++
 app.route("/register")
   .get(function(req,res){
     res.render("register");
   })
   .post(function(req,res){
-    member = {
-      id: String(members.length+1),
-      username: req.body.username,
-      name :req.body.name,
-      pass: req.body.pass,
-      profile: "",
-      articles : []
-    }
-    console.log(member);
-    members.push(member);
-    res.render("profile",{member:member})
-  });
+    members.findOne({username: req.body.username},function(err,found){
+      if(found)
+      res.redirect("/login");
+    })
+    bcrypt.hash(req.body.pass, salt, function(err, hash) {
+      member = new members({
+        id: members.length+1,
+        username: req.body.username,
+        name : req.body.name,
+        password: hash
+      })
+      member.save(function(err){
+        if(err)
+        console.log(err);
+        else
+        res.render("profile",{member:member});
+      });
+    });
+  })
 
 
-//Login
+//Login +++
 app.route("/login")
   .get(function(req,res){
     res.render("login");
   })
   .post(function(req,res){
-    var username = req.body.username;
-    var pass = req.body.pass;
-    members.forEach(element => {
-      if(element.username === username && element.pass === pass)
-      {
-        res.render("dashboard",{member:element});
+    members.findOne({username: req.body.username},function(err,found){
+      if(err)
+      console.log(err)
+      else{
+        if(found){
+          bcrypt.compare(req.body.pass, found.password, function(err, result) {
+            if(result === true)
+            res.redirect("/dashboard/"+found.username);
+            else
+            res.redirect("/register");
+          });
+        }
       }
-    });
-    res.render("register");
-  })
+    })
+})
 
-//profile details
+//profile details +++++
 app.route("/profile")
   .post(function(req,res){  
     name = req.body.name;
-    p={
+    p= new profile({
       batch : req.body.batch,
       subteam : req.body.subteam,
       skill : req.body.skill,
       facebook : req.body.facebook,
       github : req.body.github,
       instagram : req.body.instagram
-    };
+    });
 
-    members.forEach(element =>{
-      if(element.name === name)
-      {
-        element.profile = (p);
-        res.render("dashboard",{member:element});
-      }
-    })
+    members.findOne({name:name},function(err,found){
+      found.profile = p;
+      found.save();
+      res.redirect("/dashboard/"+found.username);
+  })
   })
 
-//Picture Gallery
+//Picture Gallery +++++
 app.get("/gallery",function(req,res){
   res.render("gallery");
 })
@@ -89,9 +138,23 @@ app.get("/gallery",function(req,res){
 app.get("/blog/:author/:title",function(req,res){
   var author = req.params.author;
   var title = req.params.title;
-  var article; 
-  var member;
-  for(var i=0;i<members.length;i++){
+  var a; 
+  var m;
+  members.findOne({username : author},function(err,member){
+    if(member){
+      console.log(member);
+      member.articles.findOne({title : title},function(err,article){
+        if(article){
+          m=member,
+          a=article
+        }
+      });
+    }
+  });
+  console.log("a=");
+  console.log(m);
+  console.log(a);
+  /*for(var i=0;i<members.length;i++){
     if(members[i].name === author)
     {
       for(var j=0;j<members[i].articles.length;j++)
@@ -103,31 +166,47 @@ app.get("/blog/:author/:title",function(req,res){
         }
       }
     }
-  };
-  res.render("blog",{article:article,profile:member});
+  };*/
+  res.render("blog",{article:a,profile:m});
 })
 
+//dashboard ++++
+app.get("/dashboard/:username",function(req,res){
+  var username = req.params.username;
+  members.findOne({username : username},function(err,doc){
+    if(!err)
+    {
+        res.render("dashboard",{member: doc});
+    }
+    else
+    console.log("There was some Error!!");
+})
+})
 
-//Blog composing page
+//Blog composing page  +++++
 app.route("/compose")
   .get(function(req,res){
     res.render("compose");
   })
   .post(function(req,res){
     var name = req.body.author;
-    a={
+    a= new articles({
       title : req.body.title,
       author : req.body.author,
       date : req.body.date,
       topic : req.body.topic,
       article : req.body.article
-    };
-    members.forEach(element =>{
-      if(element.name === name)
-      {
-        res.render("dashboard",{member:element});
+    });
+    var username;
+    members.findOne({name:name},function(err,found){
+      if(found)
+      { 
+        found.articles.push(a);
+        found.save();
+        res.redirect("/dashboard/"+found.username);
       }
-    })
+    });
+    
   })
 
 //Blog Category rendering
@@ -146,27 +225,27 @@ app.get("/blog/:category",function(req,res){
   res.render("blog_category",{category:category1,articles:list});
 })
 
-//Workshop Details
+//Workshop Details  ++++
 app.get("/ws",function(req,res){
   res.render("ws");
 })
 
-//Team page
+//Team page  ++++
 app.get("/team",function(req,res){
   res.render("team");
 })
 
-//Achievements Page
+//Achievements Page  ++++
 app.get("/achievement",function(req,res){
   res.render("achievements")
 })
 
-//Projects Page
+//Projects Page  ++++
 app.get("/projects",function(req,res){
   res.render("projects");
 })
 
-//Hosting The App
+//Hosting The App  ++++
 let port = process.env.PORT;
 if (port == null || port == "") {
   port = 3000;
