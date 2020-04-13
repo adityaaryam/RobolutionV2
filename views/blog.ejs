@@ -2,7 +2,7 @@
 
 
     <!-- Blog Details Hero Section Begin -->
-    <section class="blog-details-hero set-bg" data-setbg="img/workshop/ml.jpg">
+    <section class="blog-details-hero set-bg" data-setbg="img/blog/<%=category%>.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 p-0 m-auto">
@@ -30,10 +30,10 @@
                         </div>
                         <div class="blog-details-pic">
                             <div class="blog-details-pic-item">
-                                <img src="img/blog/details/details-1.jpg" alt="">
+                                <img src="data:image/jpeg;base64,<%=img1[0]%>" alt="">
                             </div>
                             <div class="blog-details-pic-item">
-                                <img src="img/blog/details/details-2.jpg" alt="">
+                                <img src="data:image/jpeg;base64,<%=img1[1]%>" alt="">
                             </div>
                         </div>
                         <div class="blog-details-desc">
@@ -51,19 +51,19 @@
                         </div>
                         <div class="blog-details-author">
                             <div class="ba-pic">
-                                <img src="img/k17/team-1.jpg" alt="">
+                                <img src="data:image/jpeg;base64,<%=img%>" alt="">
                             </div>
                             <div class="ba-text">
-                                <h5><%=profile.name%></h5>
+                                <h5><%=member.profile.name%></h5>
                                 <ul>
-                                    <li><strong style="color: orangered;">Batch : </strong><strong style="color: white;"><%= profile.batch %></strong></li>
-                                    <li><strong style="color: orangered;">Subteam : </strong><strong style="color: white;"><%= profile.subteam %></strong></li>
-                                    <li><strong style="color: orangered;">Skill : </strong><strong style="color: white;"><%= profile.skill %></strong></li>
+                                    <li><strong style="color: orangered;">Batch : </strong><strong style="color: white;"><%= member.profile.batch %></strong></li>
+                                    <li><strong style="color: orangered;">Subteam : </strong><strong style="color: white;"><%= member.profile.subteam %></strong></li>
+                                    <li><strong style="color: orangered;">Skill : </strong><strong style="color: white;"><%= member.profile.skill %></strong></li>
                                 </ul>
                                 <div class="bp-social">
-                                    <a href="<%= profile.facebook %>"><i class="fa fa-facebook"></i></a>
-                                    <a href="<%= profile.github %>"><i class="fa fa-github"></i></a>
-                                    <a href="<%= profile.instagram %>"><i class="fa fa-instagram"></i></a>
+                                    <a href="<%= member.profile.facebook %>"><i class="fa fa-facebook"></i></a>
+                                    <a href="<%= member.profile.github %>"><i class="fa fa-github"></i></a>
+                                    <a href="<%= member.profile.instagram %>"><i class="fa fa-instagram"></i></a>
                                 </div>
                             </div>
                         </div>

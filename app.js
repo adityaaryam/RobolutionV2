@@ -2,11 +2,18 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require('lodash');
+var multer  = require('multer')
 const app = express();
 const encrypt = require("mongoose-encryption");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const salt =10;
+
+const upload = multer({
+  limits:{
+    fileSize: 200000
+  }
+})
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
@@ -21,7 +28,8 @@ const profileSchema = new mongoose.Schema({
   skill : String,
   facebook : String,
   github : String,
-  instagram : String
+  instagram : String,
+  img : Buffer
 });
 
 const articlesSchema = new mongoose.Schema({
@@ -55,9 +63,17 @@ app.get("/home",function(req,res){
     res.render("home");
 })
 
-//Blog List page ++++
+//Blog List page +++
 app.get("/blog_list",function(req,res){
-  res.render("blog_list",{members:members});
+  var list = [];
+  members.find({} , (err, member) => {
+    if(err)
+    console.log(err)
+    else
+    {
+      res.render("blog_list",{members:member});
+    }
+  })
 })
 
 //Register +++++
@@ -69,23 +85,25 @@ app.route("/register")
     members.findOne({username: req.body.username},function(err,found){
       if(found)
       res.redirect("/login");
+      else
+      {
+        bcrypt.hash(req.body.pass, salt, function(err, hash) {
+          member = new members({
+            id: members.length+1,
+            username: req.body.username,
+            name : req.body.name,
+            password: hash
+          })
+          member.save(function(err){
+            if(err)
+            console.log(err);
+            else
+            res.render("profile",{member:member});
+          });
+        });
+      }
     })
-    bcrypt.hash(req.body.pass, salt, function(err, hash) {
-      member = new members({
-        id: members.length+1,
-        username: req.body.username,
-        name : req.body.name,
-        password: hash
-      })
-      member.save(function(err){
-        if(err)
-        console.log(err);
-        else
-        res.render("profile",{member:member});
-      });
-    });
   })
-
 
 //Login +++
 app.route("/login")
@@ -110,8 +128,7 @@ app.route("/login")
 })
 
 //profile details +++++
-app.route("/profile")
-  .post(function(req,res){  
+app.post("/profile",upload.single("img"),function(req,res){  
     name = req.body.name;
     p= new profile({
       batch : req.body.batch,
@@ -119,7 +136,8 @@ app.route("/profile")
       skill : req.body.skill,
       facebook : req.body.facebook,
       github : req.body.github,
-      instagram : req.body.instagram
+      instagram : req.body.instagram,
+      img : req.file.buffer
     });
 
     members.findOne({name:name},function(err,found){
@@ -134,40 +152,28 @@ app.get("/gallery",function(req,res){
   res.render("gallery");
 })
 
-//Blog Article rendering
-app.get("/blog/:author/:title",function(req,res){
-  var author = req.params.author;
+//Blog Article rendering++++
+app.get("/blog/:username/:title",function(req,res){
+  var username = req.params.username;
   var title = req.params.title;
-  var a; 
   var m;
-  members.findOne({username : author},function(err,member){
+  members.findOne({username:username},function(err,member){
+    m=member;
+  })
+
+  members.findOne({username : username,'articles.title' : title},function(err,member){
     if(member){
-      console.log(member);
-      member.articles.findOne({title : title},function(err,article){
-        if(article){
-          m=member,
-          a=article
+      member.articles.forEach(article=>{
+        if(article.title === title)
+        {
+          var thumb = new Buffer(member.profile.img).toString('base64');
+          var thumb1 = new Buffer(article.img).toString('base64');
+          var category = _.camelCase(article.topic)
+          res.render("blog",{article:article,member:member,category:category,img:thumb,img1:thumb1});
         }
-      });
+      })
     }
   });
-  console.log("a=");
-  console.log(m);
-  console.log(a);
-  /*for(var i=0;i<members.length;i++){
-    if(members[i].name === author)
-    {
-      for(var j=0;j<members[i].articles.length;j++)
-      {
-        if(members[i].articles[j].title === title)
-        {
-          member=members[i]
-          article=members[i].articles[j]
-        }
-      }
-    }
-  };*/
-  res.render("blog",{article:a,profile:m});
 })
 
 //dashboard ++++
@@ -176,54 +182,56 @@ app.get("/dashboard/:username",function(req,res){
   members.findOne({username : username},function(err,doc){
     if(!err)
     {
-        res.render("dashboard",{member: doc});
+        var thumb = new Buffer(doc.profile.img).toString('base64');
+        res.render("dashboard",{member: doc, img: thumb});
     }
     else
     console.log("There was some Error!!");
 })
 })
 
-//Blog composing page  +++++
-app.route("/compose")
+//Blog composing page
+app.route("/compose/:username")
   .get(function(req,res){
-    res.render("compose");
+    username = req.params.username;
+    res.render("compose",{username : username});
   })
-  .post(function(req,res){
+app.post("/compose",upload.array("img"),function(req,res){
     var name = req.body.author;
     a= new articles({
       title : req.body.title,
       author : req.body.author,
       date : req.body.date,
       topic : req.body.topic,
-      article : req.body.article
+      article : req.body.article,
+      img : req.file.buffer
     });
-    var username;
-    members.findOne({name:name},function(err,found){
+    members.findOne({username: req.body.username},function(err,found){
       if(found)
       { 
         found.articles.push(a);
         found.save();
-        res.redirect("/dashboard/"+found.username);
       }
     });
-    
-  })
+    res.redirect("/dashboard/"+req.body.username);
+})
 
 //Blog Category rendering
 app.get("/blog/:category",function(req,res){
   var list = []
-  var category = req.params.category;
-  var category1 = _.camelCase(category);
-  console.log(category1)
-  console.log(category)
-  members.forEach(member=>{
-    member.articles.forEach(article=>{
-      if(article.topic === category)
-      list.push(article)
-    })
+  var category = _.camelCase(req.params.category);
+
+  members.find({'articles.topic' : req.params.category} , (err, member) => {
+    if(err)
+    console.log(err)
+    else
+    {
+      console.log(member)
+      res.render("blog_category",{members:member,topic:req.params.category,category:category});
+    }
   })
-  res.render("blog_category",{category:category1,articles:list});
 })
+
 
 //Workshop Details  ++++
 app.get("/ws",function(req,res){

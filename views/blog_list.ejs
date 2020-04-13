@@ -29,10 +29,10 @@
                         <% member.articles.forEach(function(article){ %>
                             <div class="blog-item">
                                 <div class="bi-pic">
-                                    <img src="img/blog/blog-1.jpg" alt="">
+                                    <img src="img/category/<%=article.topic%>.jpg" alt="">
                                 </div>
                                 <div class="bi-text">
-                                    <h5><a href="/blog/<%=article.author%>/<%=article.title%>"><%= article.title %></a></h5>
+                                    <h5><a href="/blog/<%=member.username%>/<%=article.title%>"><%= article.title %></a></h5>
                                     <ul>
                                         <li>by <%= article.author %></li>
                                         <li><%= article.date %></li>

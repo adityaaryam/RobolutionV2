@@ -35,26 +35,32 @@
                     
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="leave-comment">
-                        <form action="/compose" method="post">
+                        <form action="/compose" method="post" enctype="multipart/form-data">
                             <div class="row">
                             <div class="col-lg-6 col-md-6">
-                            <input type="text" placeholder="Title" name="title">
-                            <input type="text" placeholder="Author" name="author">
-                            <input type="date" placeholder="Date" name="date">
+                            <input type="text" placeholder="Title" name="title" required>
+                            <input type="text" placeholder="Author" name="author" required>
+                            <input type="date" placeholder="Date" name="date" required>
+                            <input type="hidden" name="username" value=<%= username %>>
+                            <select name="topic" style="font-size: 13px;color: #c4c4c4;width: 100%;height: 46px;border: 1px solid #363636;padding-left: 20px;padding-right: 5px;background: transparent;margin-bottom: 20px; ;">
+                                <option value="Embedded Systems">Embedded Systems</option>
+                                <option value="Mechanical Design">Mechanical Design</option>
+                                <option value="Internet of Things">Internet of Things</option>
+                                <option value="ROS">ROS</option>
+                                <option value="Blockchain">Blockchain</option>
+                                <option value="Machine Learning">Machine Learning</option>
+                                <option value="Image Processing">Image Processing</option>
+                              </select>
+                              <label style="color: #c4c4c4;">  Choose any 2 Images</label>
+                              <input type="file" name="img" multiple/>
+                              
                             </div>
                             <div class="col-lg-6 col-md-6">
-                                <textarea  placeholder="Article" class="form-control" name = "article" ></textarea>
-                                <select name="topic">
-                                    <option value="Embedded Systems">Embedded Systems</option>
-                                    <option value="Mechanical Design">Mechanical Design</option>
-                                    <option value="Internet of Things">Internet of Things</option>
-                                    <option value="ROS">ROS</option>
-                                    <option value="Blockchain">Blockchain</option>
-                                    <option value="Machine Learning">Machine Learning</option>
-                                    <option value="Image Processing">Image Processing</option>
-                                  </select>
+                                <textarea  placeholder="Introdunction of the topic." class="form-control" name = "intro" required ></textarea>
+                                <textarea  placeholder="Article" class="form-control" name = "article" required ></textarea>
+                                
                             </div >
                             </div>
                             <button type="submit">Submit</button>

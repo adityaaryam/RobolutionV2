@@ -1,5 +1,6 @@
 <%- include('header') %>
 
+
     <!-- Blog Details Hero Section Begin -->
     <section class="blog-details-hero set-bg" data-setbg="img/dashboard1.jpg">
         <div class="container">
@@ -26,14 +27,14 @@
                             
                         <div class="blog-details-author">
                             <div class="ba-pic">
-                                <img src="img/dashboard/<%= member.id %>.jpg" alt="">
+                                <img  alt="" id="profile" src="data:image/jpeg;base64,<%=img%>">
                             </div>
                             <div class="ba-text">
                                 <h5><%=member.profile.name%></h5>
                                 <ul>
                                     <li><strong style="color: orangered;">Batch : </strong><strong style="color: white;"><%= member.profile.batch %></strong></li>
                                     <li><strong style="color: orangered;">Subteam : </strong><strong style="color: white;"><%= member.profile.subteam %></strong></li>
-                                    <li><strong style="color: orangered;">Skill : </strong><strong style="color: white;"><%= member.profile.skill %></strong></li>
+                                    <li><strong style="color: orangered;">Skills : </strong><strong style="color: white;"><%= member.profile.skill %></strong></li>
                                 </ul>
                                 <div class="bp-social">
                                     <a href="<%= member.profile.facebook %>"><i class="fa fa-facebook"></i></a>
@@ -44,7 +45,7 @@
                         </div>
                         <div class="col-lg-12 text-center">
                             <div class="bs-text">
-                                <a href="/compose" class="primary-btn  btn-normal">Compose Blog</a>
+                                <a href="/compose/<%= member.username %>" class="primary-btn  btn-normal">Compose Blog</a>
                                 <br><br><br><br><br>
                             </div>
                             <h3> <strong style="color: white;">Your</strong> <strong style="color: orangered;">Blogs</strong></h3>
@@ -66,10 +67,10 @@
                             <% for(var i=0;i<member.articles.length;i++){ %>
                             <div class="blog-item">
                                 <div class="bi-pic">
-                                    <img src="img/blog/blog-1.jpg" alt="">
+                                    <img src="img/category/<%=member.articles[i].topic%>.jpg" alt="">
                                 </div>
                                 <div class="bi-text">
-                                    <h5><a href="/blog/:<%=member.articles[i].author%>/:<%=member.articles[i].title%>"><%= member.articles[i].title %></a></h5>
+                                    <h5><a href="/blog/<%=member.username%>/<%=member.articles[i].title%>"><%= member.articles[i].title %></a></h5>
                                     <ul>
                                         <li>by <%= member.articles[i].author %></li>
                                         <li><%= member.articles[i].date %>.</li>
@@ -114,6 +115,21 @@
         </div>
     </section>
     <!-- Blog Details Section End -->
+    <script>
+
+        
+        // function hexToBase64(str) {
+        //     return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
+        // }
+        // // var x = hexToBase64(String(<%=member.profile.img%>));
+        // // var thumb = new Buffer(<%=member.profile.img%>).toString('base64');
+
+        // $(document).ready(() => {
+        //     console.log("asdas");
+        //     console.log(thumb);
+        //     $("#profile").attr("src", "data:image/jpeg;base64,"+x);
+        // })
+    </script>
 
    
 
