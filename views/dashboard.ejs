@@ -76,8 +76,7 @@
                                         <li><%= member.articles[i].date %>.</li>
                                         <li><%= member.articles[i].topic %></li>
                                     </ul>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt ut
-                                        labore et dolore magna aliqua accumsan lacus facilisis.</p>
+                                    <p><%= member.articles[i].intro.substring(1,100) %>......</p>
                                 </div>
                             </div>
                             <% } %>

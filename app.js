@@ -1,3 +1,4 @@
+require('dotenv').config({path: __dirname + '/.env'})
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -9,6 +10,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const salt =10;
 
+
 const upload = multer({
   limits:{
     fileSize: 200000
@@ -19,7 +21,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use("/public", express.static(__dirname + '/public'));
 mongoose.set('useCreateIndex', true);
-mongoose.connect("mongodb://localhost:27017/robolutionDB", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb+srv://admin-robolution:"+process.env.PASS+"@cluster0-seci1.mongodb.net/test?retryWrites=true&w=majority/robolutionDB", {useNewUrlParser: true, useUnifiedTopology: true});
 
 length=1;
 const profileSchema = new mongoose.Schema({
@@ -29,15 +31,29 @@ const profileSchema = new mongoose.Schema({
   facebook : String,
   github : String,
   instagram : String,
-  img : Buffer
-});
+  img : Buffer},
+  {
+    writeConcern: {
+      w: 'majority',
+      j: true,
+      wtimeout: 1000
+  }});
 
 const articlesSchema = new mongoose.Schema({
   title : String,
   author : String,
   date : String,
   topic : String,
-  article : String
+  intro : String,
+  article : String,
+  img1 : Buffer,
+  img2 : Buffer},
+  {
+    writeConcern: {
+      w: 'majority',
+      j: true,
+      wtimeout: 1000
+  }
 });
 
 const membersSchema = new mongoose.Schema({
@@ -46,7 +62,13 @@ const membersSchema = new mongoose.Schema({
   name : String,
   password: String,
   profile: profileSchema,
-  articles : [articlesSchema]
+  articles : [articlesSchema]},
+  {
+    writeConcern: {
+      w: 'majority',
+      j: true,
+      wtimeout: 1000
+  }
 });
 
 
@@ -98,7 +120,7 @@ app.route("/register")
             if(err)
             console.log(err);
             else
-            res.render("profile",{member:member});
+            res.redirect("/profile/"+member.username);
           });
         });
       }
@@ -117,18 +139,26 @@ app.route("/login")
       else{
         if(found){
           bcrypt.compare(req.body.pass, found.password, function(err, result) {
+            console.log(result);
             if(result === true)
             res.redirect("/dashboard/"+found.username);
             else
             res.redirect("/register");
-          });
-        }
+          });}
+          else
+          res.redirect("/register");
       }
     })
 })
 
 //profile details +++++
-app.post("/profile",upload.single("img"),function(req,res){  
+app.get("/profile/:username",function(req,res){
+  members.findOne({username: req.params.username},function(err,found){
+    res.render("profile",{member:found});
+})
+});
+
+app.post("/profile/:username",upload.single("img"),function(req,res){  
     name = req.body.name;
     p= new profile({
       batch : req.body.batch,
@@ -140,7 +170,7 @@ app.post("/profile",upload.single("img"),function(req,res){
       img : req.file.buffer
     });
 
-    members.findOne({name:name},function(err,found){
+    members.findOne({username: req.params.username},function(err,found){
       found.profile = p;
       found.save();
       res.redirect("/dashboard/"+found.username);
@@ -166,10 +196,11 @@ app.get("/blog/:username/:title",function(req,res){
       member.articles.forEach(article=>{
         if(article.title === title)
         {
-          var thumb = new Buffer(member.profile.img).toString('base64');
-          var thumb1 = new Buffer(article.img).toString('base64');
+         var img1 = new Buffer(article.img1).toString('base64');
+          var img2 = new Buffer(article.img2).toString('base64');
+          var img = new Buffer(member.profile.img).toString('base64');
           var category = _.camelCase(article.topic)
-          res.render("blog",{article:article,member:member,category:category,img:thumb,img1:thumb1});
+          res.render("blog",{article:article,member:member,category:category,img1:img1,img2:img2,img:img});
         }
       })
     }
@@ -186,6 +217,7 @@ app.get("/dashboard/:username",function(req,res){
         res.render("dashboard",{member: doc, img: thumb});
     }
     else
+    
     console.log("There was some Error!!");
 })
 })
@@ -196,15 +228,17 @@ app.route("/compose/:username")
     username = req.params.username;
     res.render("compose",{username : username});
   })
-app.post("/compose",upload.array("img"),function(req,res){
+app.post("/compose",upload.array("img",2),function(req,res){
     var name = req.body.author;
     a= new articles({
       title : req.body.title,
       author : req.body.author,
       date : req.body.date,
       topic : req.body.topic,
+      intro : req.body.intro,
       article : req.body.article,
-      img : req.file.buffer
+      img1 : req.files[0].buffer,
+      img2 : req.files[1].buffer
     });
     members.findOne({username: req.body.username},function(err,found){
       if(found)

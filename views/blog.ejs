@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-8 p-0 m-auto">
                     <div class="bh-text">
-                        <h3><%= article.title %></h3>
+                        <h3><strong style="color: orangered;" ><%= article.title %></strong></h3>
                         <ul>
                             <li>by <%= article.author %></li>
                             <li><%=article.date%></li>
@@ -27,25 +27,18 @@
                 <div class="col-lg-8 p-0 m-auto">
                     <div class="blog-details-text">
                         <div class="blog-details-title">
+                        <p><%=article.intro %></p>
                         </div>
                         <div class="blog-details-pic">
                             <div class="blog-details-pic-item">
-                                <img src="data:image/jpeg;base64,<%=img1[0]%>" alt="">
+                                <img src="data:image/jpeg;base64,<%=img1%>" alt="">
                             </div>
                             <div class="blog-details-pic-item">
-                                <img src="data:image/jpeg;base64,<%=img1[1]%>" alt="">
+                                <img src="data:image/jpeg;base64,<%=img2%>" alt="">
                             </div>
                         </div>
                         <div class="blog-details-desc">
                             <p><%=article.article%>;</p>
-                        </div>
-                        <div class="blog-details-quote">
-                            <div class="quote-icon">
-                                <img src="img/blog/details/quote-left.png" alt="">
-                            </div>
-                            <h5>The whole family of tiny legumes, whether red, green, yellow, or black, offers so many
-                                possibilities to create an exciting lunch.</h5>
-                            <span>MEIKE PETERS</span>
                         </div>
                         <div class="blog-details-more-desc">
                         </div>
