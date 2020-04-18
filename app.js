@@ -21,7 +21,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use("/public", express.static(__dirname + '/public'));
 mongoose.set('useCreateIndex', true);
-mongoose.connect("mongodb+srv://admin-robolution:"+process.env.PASS+"@cluster0-seci1.mongodb.net/test?retryWrites=true&w=majority/robolutionDB", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb+srv://admin-robolution:pinball@cluster0-seci1.mongodb.net/test?retryWrites=true&w=majority/robolutionDB", {useNewUrlParser: true, useUnifiedTopology: true});
 
 length=1;
 const profileSchema = new mongoose.Schema({
