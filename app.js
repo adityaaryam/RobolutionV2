@@ -182,6 +182,12 @@ app.get("/gallery",function(req,res){
   res.render("gallery");
 })
 
+//placement  +++++
+app.get("/placement",function(req,res){
+  res.render("placement");
+})
+
+
 //Blog Article rendering++++
 app.get("/blog/:username/:title",function(req,res){
   var username = req.params.username;
@@ -271,7 +277,14 @@ app.get("/blog/:category",function(req,res){
 app.get("/ws",function(req,res){
   res.render("ws");
 })
-
+// exe-bodies  ++++
+app.get("/exe-bodies",function(req,res){
+  res.render("exe-bodies");
+})
+// ritwick sharma +++
+app.get("/ritwick",function(req,res){
+  res.render("ritwick");
+})
 //Team page  ++++
 app.get("/team",function(req,res){
   res.render("team");

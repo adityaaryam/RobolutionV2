@@ -1,0 +1,21 @@
+<%- include('header') %>
+
+
+    <!-- gallery Details Hero Section Begin -->
+    <section class="blog-details-hero set-bg" data-setbg="img/blog/<%=category%>.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 p-0 m-auto">
+                    <div class="bh-text">
+                        <h3><strong style="color: orangered;" ><%= article.title %></strong></h3>
+                        <ul>
+                            <li>by <%= article.author %></li>
+                            <li><%=article.date%></li>
+                            <li><%=article.topic%></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Gallery Details Hero Section End -->
