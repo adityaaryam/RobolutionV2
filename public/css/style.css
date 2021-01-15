@@ -84,7 +84,19 @@ p {
 	line-height: 24px;
 	margin: 0 0 15px 0;
 }
-
+.note{
+	position:absolute;
+	right:10px;
+	float:right;
+}
+@media  screen and (max-width: 480px) {
+.note{
+	position:absolute;
+	top:550px;
+	left:10px;
+	float:right;
+}
+}
 img {
 	max-width: 100%;
 }
@@ -198,8 +210,20 @@ ol {
 	z-index: 999999;
 	background: #000;
 }
+.loader{
 
-.loader {
+  height:400px;
+  width:500px;
+  margin: 0;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+}
+
+/*.loader {
 	width: 40px;
 	height: 40px;
 	position: absolute;
@@ -249,7 +273,9 @@ ol {
 		border: 4px solid #f44336;
 		border-left-color: transparent;
 	}
-}
+}*/
+/*loader-effect*/
+
 
 .spacial-controls {
 	position: fixed;
@@ -595,6 +621,11 @@ ol {
 	opacity: 0;
 }
 
+@media  screen and (max-width: 480px) {
+.hi-text{
+	text-align:center;
+}
+}
 /*---------------------
   ChoseUs Section
 -----------------------*/
@@ -656,15 +687,30 @@ ol {
 
 .class-item .ci-pic img {
 	min-width: 100%;
+	
 }
 
+@media  screen and (max-width: 480px) {
+.class-item .ci-pic img {
+	min-width: 100%;
+	height:200px;
+}
+}
 .class-item .ci-text {
 	background: #0a0a0a;
 	position: relative;
 	padding: 10px 30px 26px 30px;
 	z-index: 1;
 }
-
+@media  screen and (max-width: 480px) {
+.class-item .ci-text {
+	background: #0a0a0a;
+	position: relative;
+	padding: 10px 30px 26px 30px;
+	z-index: 1;
+	top:-55px;
+}
+}
 .class-item .ci-text:after {
 	position: absolute;
 	left: -5px;
@@ -3524,10 +3570,13 @@ ol {
   font-size: 15px;
   color: #4e5052;
   text-transform: capitalize;
+  position:relative;
+  top:-10px;
 }
 
 .our-team .social {
   width: 100%;
+  height:40px;
   padding: 0;
   margin: 0;
   background-color: #f36100;
@@ -3552,6 +3601,14 @@ ol {
   color: white;
   transition: all 0.3s ease 0s;
   text-decoration: none;
+
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
 }
 
 .our-team .social li a:hover {
@@ -3621,9 +3678,14 @@ width: 100%;
 	padding-bottom:5px;
 }
 .answer{
-	color:white;
-	font-family: "Times New Roman", serif;
-	font-size:1.2rem;
+	font-size: 17px;
+    padding: 0;
+    line-height: normal;
+   
+    letter-spacing: 1px;
+    text-transform: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: "Poppins", sans-serif;
 }
 .hero-text-container{
 	margin:4%;
@@ -3636,7 +3698,7 @@ width: 100%;
 .name {
   color: #f36100;
  font-family: 'Georgia', sans-serif;
-  font-size:2.3rem;
+  font-size:1.8rem;
   text-decoration: none;
   letter-spacing:;
   
@@ -3644,6 +3706,7 @@ width: 100%;
   padding-top:10px;
   padding-left:5px;
   position: relative;
+  top:-10px
 }
 .name:after {    
   background: none repeat scroll 0 0 transparent;

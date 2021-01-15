@@ -285,6 +285,42 @@ app.get("/exe-bodies",function(req,res){
 app.get("/ritwick",function(req,res){
   res.render("ritwick");
 })
+// Vivek Basant +++
+app.get("/vivek",function(req,res){
+  res.render("vivek");
+})
+// Abhishek asi +++
+app.get("/asi",function(req,res){
+  res.render("asi");
+})
+// Anirudh Raju +++
+app.get("/anirudh",function(req,res){
+  res.render("anirudh");
+})
+// dhruv gupta +++
+app.get("/dhruv",function(req,res){
+  res.render("dhruv");
+})
+// sahil  +++
+app.get("/sahil",function(req,res){
+  res.render("sahil");
+})
+// Anurag+++
+app.get("/anurag",function(req,res){
+  res.render("anurag");
+})
+// khemka+++
+app.get("/khemka",function(req,res){
+  res.render("khemka");
+})
+// shaswat+++
+app.get("/shaswat",function(req,res){
+  res.render("shaswat");
+})
+// sarthak+++
+app.get("/sarthak",function(req,res){
+  res.render("sarthak");
+})
 //Team page  ++++
 app.get("/team",function(req,res){
   res.render("team");
