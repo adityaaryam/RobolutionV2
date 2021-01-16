@@ -7,7 +7,7 @@ var multer  = require('multer')
 const app = express();
 const encrypt = require("mongoose-encryption");
 const mongoose = require("mongoose");
-// const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 const salt =10;
 
 
