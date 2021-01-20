@@ -207,3 +207,6 @@ $(document).ready(function() {
     // Bind event listener
         $(window).resize(checkWidth);
 });
+
+
+

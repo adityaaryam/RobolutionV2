@@ -3733,7 +3733,7 @@ width: 100%;
 }
 .company {
   color: white;
-  font-size:1.8rem;
+  font-size:1.6rem;
   text-decoration: none;
   letter-spacing:;
   font-family: "Garamond",Serif;
@@ -3837,7 +3837,16 @@ width: 100%;
 	position:relative;
 	top:15px;
 	color:white;
-	border-bottom-style: double;
+	text-align:center;
+	
+}
+.exe-heading h2 span{
+	position:relative;
+	top:5px;
+	display:block;
+	color:white;
+	text-align:center;
+	
 }
 
 @media  screen and (max-width: 480px) {
@@ -4004,6 +4013,18 @@ width: 100%;
 
 }
 @media  screen and (max-width: 480px) {
+.exe-bodies h2{
+	color: #f36100;
+	font-size: 1.9rem;
+	font-weight: 520;
+	  text-shadow: 0.5px 0.5px 0.5px #ababab;
+	font-family: "Garamond",Serif;
+	padding-top:20px;
+
+
+}
+}
+@media  screen and (max-width: 480px) {
 .mech{
 	color: #f36100;
 	font-size: 2.2rem;
@@ -4077,3 +4098,62 @@ width: 100%;
   text-align: center;
 }
 */
+
+
+
+
+/*new dropdown*/
+.dropbtn {
+  background-color: transparent;
+  color: white;
+  padding: 16px;
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+
+  position: relative;
+  text-align:center;
+  padding-top:20px;
+  display: block;
+
+}
+
+.dropdown-content {
+margin:0 auto;
+  display: none;
+  position: relative;
+  background-color: transparent;
+  width:100px ;
+  font-size:1.1rem;
+  color:white;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.btn-dd{
+	background:transparent;
+	border:0px;
+	color:white;
+	display:block;
+	text-align:center;
+}
+.dropdown-content a {
+	text-align:center;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content button:hover {color:#ff4500}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  
+  color:#ff4500;
+}
