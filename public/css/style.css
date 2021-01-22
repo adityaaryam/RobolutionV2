@@ -151,6 +151,12 @@ ol {
 	background-position: top center;
 }
 
+@media screen and (max-width: 480px) {   
+    .set-bg{
+    	background-image: url(../public/img/trial.jpeg);
+    	
+    } 
+}
 .spad {
 	padding-top: 100px;
 	padding-bottom: 100px;
@@ -615,9 +621,17 @@ ol {
 }
 
 .hs-slider .hs-item .hi-text h1 strong {
-	color: #f36100;
+	color: #FF4500;
+	 
+	
 }
-
+@media  screen and (max-width: 480px) {
+.hs-slider .hs-item .hi-text h1 strong {
+	color: #FF4500;
+	font-family: Baskerville,Baskerville Old Face,Hoefler Text,Garamond,Times New Roman,serif; 
+	
+}
+}
 .hs-slider .hs-item .hi-text .primary-btn {
 	position: relative;
 	top: 100px;
@@ -627,7 +641,25 @@ ol {
 @media  screen and (max-width: 480px) {
 .hi-text{
 	text-align:center;
+	background-color:rgba(0,0,0,0.4);
 }
+}
+
+
+/*overlay*/
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
 }
 /*---------------------
   ChoseUs Section
@@ -636,8 +668,15 @@ ol {
 .choseus-section {
 	background: #0a0a0a;
 	padding-bottom: 70px;
+	
 }
-
+@media  screen and (max-width: 480px) {
+.choseus-section {
+	background: #0a0a0a;
+	padding-bottom: 70px;
+	margin-top:-100px
+}
+}
 .cs-item {
 	text-align: center;
 	margin-bottom: 30px;

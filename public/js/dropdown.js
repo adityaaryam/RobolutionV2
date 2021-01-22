@@ -63,7 +63,7 @@ p_1.addEventListener("click",function(){
 p_2.addEventListener("click",function(){
     main_1.innerHTML = "2k19-2k20";
     fac_head.innerHTML = "Arun Dayal Udai";
-    presi.innerHTML = "Mohit Bihani";
+    presi.innerHTML = "Mohit Bihany";
     vp1.innerHTML = "Rishabh Singh";
     vp2.innerHTML = "Abhinav Gupta";
     captain.innerHTML = "Sourabh Khemka";
