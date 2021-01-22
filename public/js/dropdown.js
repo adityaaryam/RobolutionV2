@@ -97,7 +97,7 @@ p_3.addEventListener("click",function(){
     vp2.innerHTML = "Ajay Kr.Gupta";
     captain.innerHTML = "Pranav Raj";
     vc.innerHTML = "Ojas";
-    gensec.innerHTML = "Sarthak M. Das";
+    gensec.innerHTML = "Mohit Bihany";
     treasurer.innerHTML = "Soumen Das";
     ehl.innerHTML = "Abhinav Gupta";
     mhl.innerHTML = "Subham Baranawal";
