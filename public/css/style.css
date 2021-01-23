@@ -152,8 +152,10 @@ ol {
 }
 
 @media screen and (max-width: 480px) {   
-    .set-bg{
-    	background-image: url(../public/img/trial.jpeg);
+    .cover-main{
+    	background-image: url(../img/cover-4.jpg) !important;
+    	height:600px !important;
+    	
     	
     } 
 }
@@ -634,6 +636,8 @@ ol {
 @media  screen and (max-width: 480px) {
 .hs-slider .hs-item .hi-text h1 strong {
 	color: #FF4500;
+	font-weight:800;
+
 	font-family: Baskerville,Baskerville Old Face,Hoefler Text,Garamond,Times New Roman,serif; 
 	
 }
@@ -647,7 +651,10 @@ ol {
 @media  screen and (max-width: 480px) {
 .hi-text{
 	text-align:center;
-	background-color:rgba(0,0,0,0.4);
+	font-weight:800;
+	margin-top:20px;
+	background-color:rgba(0,0,0,0.3);
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 }
 
@@ -680,7 +687,8 @@ ol {
 .choseus-section {
 	background: #0a0a0a;
 	padding-bottom: 70px;
-	margin-top:-100px
+	margin-top:-100px;
+	padding-top:120px;
 }
 }
 .cs-item {
@@ -991,7 +999,13 @@ ol {
 	background: #151515;
 	overflow: hidden;
 }
-
+@media  screen and (max-width: 480px) {
+.gallery-section {
+	background: #151515;
+	overflow: hidden;
+	display: none;
+}
+}
 .gallery-section.gallery-page {
 	padding-top: 10px;
 }
