@@ -209,4 +209,11 @@ $(document).ready(function() {
 });
 
 
-
+ // $(function () {
+ //      $(document).scroll(function () {
+ //        var $nav = $(".navbar-fixed-top");
+ //        var $banner = $("#home");
+ //        $nav.toggleClass('scrolled', $(this).scrollTop() > 700);
+ //        $nav.show();
+ //        });
+ //      });

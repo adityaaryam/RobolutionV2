@@ -380,6 +380,10 @@ ol {
   background-color: rgba(0,0,0,0.8) !important;
   transition: background-color 200ms linear;
 }
+.nav-colored 
+{ background-color:#000; }
+.nav-transparent 
+{ background-color:transparent;}
 .nav-menu {
 	text-align: center;
 	width:150%;
@@ -622,6 +626,8 @@ ol {
 
 .hs-slider .hs-item .hi-text h1 strong {
 	color: #FF4500;
+	font-family:"Georgia",serif;
+	letter-spacing:-3px;
 	 
 	
 }
@@ -4196,3 +4202,6 @@ margin:0 auto;
   
   color:#ff4500;
 }
+
+/*head*/
+
