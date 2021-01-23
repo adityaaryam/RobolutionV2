@@ -628,7 +628,7 @@ ol {
 
 .hs-slider .hs-item .hi-text h1 strong {
 	color: #FF4500;
-	font-family:"Georgia",serif;
+	 font-family: 'Audiowide';
 	letter-spacing:-3px;
 	 
 	
@@ -636,10 +636,9 @@ ol {
 @media  screen and (max-width: 480px) {
 .hs-slider .hs-item .hi-text h1 strong {
 	color: #FF4500;
-	font-weight:800;
+	font-weight:80;
 
-	font-family: Baskerville,Baskerville Old Face,Hoefler Text,Garamond,Times New Roman,serif; 
-	
+	font-family: 'Audiowide';
 }
 }
 .hs-slider .hs-item .hi-text .primary-btn {
