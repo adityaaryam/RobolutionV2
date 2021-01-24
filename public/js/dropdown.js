@@ -46,16 +46,16 @@ p_1.addEventListener("click",function(){
     mhl.innerHTML = "Saurabh Kumar";
     ml.innerHTML = "Satyam Kumar";
     fac_head_img.src = "../public/img/k18/richa-pandey.jpeg";
-	presi_img.src = "../public/img/k17/team-2.jpg";
-	vp1_img.src = "../public/img/k17/team-1.jpg";
-	vp2_img.src = "../public/img/k17/team-16.jpg";
+	presi_img.src = "../public/img/k17/team_2.jpg";
+	vp1_img.src = "../public/img/k17/team_1.jpg";
+	vp2_img.src = "../public/img/k17/team_16.jpg";
 	captain_img.src = "../public/img/k18/4.jpg";
 	vc_img.src = "../public/img/k18/rishav-1.jpeg";
-	gensec_img.src = "../public/img/k18/9.jpeg";
-	treasurer_img.src = "../public/img/k18/12.jpeg";
+	gensec_img.src = "../public/img/k18/9.jpg";
+	treasurer_img.src = "../public/img/k18/12.jpg";
 	ehl_img.src = "../public/img/k18/13.jpg";
 	mhl_img.src = "../public/img/k18/3.jpg";
-	ml_img.src = "../public/img/k18/11.jpeg";
+	ml_img.src = "../public/img/k18/11.jpg";
 
 
 })
@@ -77,13 +77,13 @@ p_2.addEventListener("click",function(){
 	presi_img.src = "../public/img/k16/6.jpg";
 	vp1_img.src = "../public/img/k16/9.jpg";
 	vp2_img.src = "../public/img/k16/1.jpg";
-	captain_img.src = "../public/img/k17/team-2.jpg";
-	vc_img.src = "../public/img/k17/team-3.jpeg";
-	gensec_img.src = "../public/img/k17/team-1.jpg";
-	treasurer_img.src = "../public/img/k17/team-15.jpeg";
-	ehl_img.src = "../public/img/k17/team-4.jpg";
-	mhl_img.src = "../public/img/k17/team-16.jpg";
-	ml_img.src = "../public/img/k17/team-8.jpg";
+	captain_img.src = "../public/img/k17/team_2.jpg";
+	vc_img.src = "../public/img/k17/team_3.jpg";
+	gensec_img.src = "../public/img/k17/team_1.jpg";
+	treasurer_img.src = "../public/img/k17/team_15.jpg";
+	ehl_img.src = "../public/img/k17/team_4.jpg";
+	mhl_img.src = "../public/img/k17/team_16.jpg";
+	ml_img.src = "../public/img/k17/team_8.jpg";
 	sml.style.visibility="hidden";
 	sml_m.style.display="none";
 
