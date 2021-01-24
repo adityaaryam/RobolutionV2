@@ -159,6 +159,14 @@ ol {
     	
     } 
 }
+@media screen and (max-width: 480px) {   
+    .cover-p{
+    	background-image: url(../img/cover-p.jpeg) !important;
+    	height:680px !important;
+    	
+    	
+    } 
+}
 .spad {
 	padding-top: 100px;
 	padding-bottom: 100px;
