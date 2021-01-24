@@ -154,7 +154,7 @@ ol {
 @media screen and (max-width: 480px) {   
     .cover-main{
     	background-image: url(../img/cover-4.jpg) !important;
-    	height:600px !important;
+    	height:680px !important;
     	
     	
     } 
@@ -651,8 +651,8 @@ ol {
 .hi-text{
 	text-align:center;
 	font-weight:800;
-	margin-top:20px;
-	background-color:rgba(0,0,0,0.3);
+	margin-top:0px;
+	background-color:rgba(255,255,255,0.2);
 	box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 }
@@ -999,7 +999,7 @@ ol {
 	overflow: hidden;
 }
 @media  screen and (max-width: 480px) {
-.gallery-section {
+.home-gallery {
 	background: #151515;
 	overflow: hidden;
 	display: none;
